@@ -11,9 +11,9 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\RequestController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\TodoController;
 use App\Http\Controllers\SignupController;
 use App\Http\Controllers\ExtinguisherController;
-use App\Http\Controllers\ToDoController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\ProfileController;
 
@@ -44,7 +44,7 @@ Route::get('/topbar', [TopBarController::class, 'showUsername'])->name('topbar')
 //ADMIN DASHBOARD CONTROLLER
 Route::get('/admin/dashboard', [DashboardController::class, 'DashDisplay'])->name('dashboard');
 Route::get('/admin/dashboard', [DashboardController::class, 'showDashboard']);
-Route::post('/admin/add-todo', [DashboardController::class, 'addTodo']);
+
 //ADMIN User Controller
 
     Route::get('/admin/user', [UserController::class, 'UserDisplay'])->name('admin/user');
@@ -56,6 +56,8 @@ Route::post('/admin/add-todo', [DashboardController::class, 'addTodo']);
     Route::get('admin/user/{id}', [UserController::class, 'destroy'])->name('admin.delete.user');
     Route::delete('admin/user/{id}', [UserController::class, 'destroy'])->name('admin.delete.user');
     Route::get('/admin/filter/users', [UserController::class, 'filterUsers'])->name('admin.filter.users');
+    Route::get('/dashboard', [UserController::class, 'DashUserDisplay']);
+    Route::get('/dashboard', [UserController::class, 'DashfilterUsers']);
 
 //ADMIN Request Controller
 
@@ -87,9 +89,7 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/signup', [SignupController::class, 'SignDisplay'])->name('Auth/signup')->middleware('guest');
 Route::post('/signup', [SignupController::class, 'store'])->name('signup.store');
 
-//TODO LIST
-Route::get('/todos', [TodoController::class, 'index']);
-Route::post('/todos', [TodoController::class, 'store']);
+
 
 //Acount Controller
 Route::get('/account',[AccountController::class, 'AccountDisplay'])->name('account');   

@@ -52,9 +52,9 @@
             <label for="Position" id="Position" name="Position">Position</label>
             <select id="role" class="Pos1" name="Position">
                 <option value="" class="SP"disabled selected required>Select Position</option>
-                <option value="HEAD">HEAD</option>
-                <option value="MAINTENANCE PERSONNEL">MAINTENANCE PERSONNEL</option>
-                <option value="USER">USER</option>
+                <option id="Employee"value="HEAD">HEAD</option>
+                <option id="employee"value="MAINTENANCE PERSONNEL">MAINTENANCE PERSONNEL</option>
+                <option id="User" value="User">USER</option>
             </select>
 
 

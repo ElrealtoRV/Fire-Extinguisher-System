@@ -62,15 +62,16 @@
 				<div class="order">
 					<div class="user-list">
 						<h3>Lists of Users & Employee</h3>
+						<form method="get" action="/dashboard">
 						<input type="text" id="searchInput" placeholder="Search...">
 						<i class='bx bx-search search-icon' ></i>
 						<label for="filterDropdown"></label>
-						<select id="filterDropdown">
+						<select id="filterDropdown" name="users_filter">
 							
 						<option value="user"><i class="fas fa-user"></i> Users</option>
     					<option value="employee"><i class="fas fa-briefcase"></i> Employees</option>
 						</select>
-						
+						</form>
 						</div>
 					<table>
 						<thead>
@@ -81,62 +82,79 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
+						@forelse($users as $user)
+							<tr data-type="user">
 								<td>
 									<img src="img/people.png">
-									<p>Ronver Amper</p>
+									<p>{{ $user->Fname }} {{ $user->Lname }}</p>
 								</td>
-								<td>Employee</td>
-								<td><span class="status completed">Active</span></td>
+								<td>{{ $user->Position }}</td>
+								<td><span class="status {{ $user->status }}">{{ $user->status }}</span></td>
 							</tr>
-							<tr>
+							@empty
+						@endforelse
+						@forelse($employees as $employee)
+							<tr data-type="employee">
 								<td>
 									<img src="img/people.png">
-									<p>Anthony Etom</p>
+									<p>{{ $employee->Fname }} {{ $user->Lname }}</p>
 								</td>
-								<td>User</td>
-								<td><span class="status pending">InActive</span></td>
+								<td>{{ $employee->Position }}</td>
+								<td><span class="status {{ $employee->status }}">{{ $employee->status }}</span></td>
 							</tr>
-							
+						@empty
+							<tr>
+								<td colspan="3">No users found</td>
+							</tr>
+						@endforelse
 						</tbody>
 					</table>
-				</div>
-						<div class="todo">
-						<div class="head">
-							<h3>Todo List</h3>
-						</div>
-						<form id="todoForm">
-							@csrf
-							<input type="text" class="Todo-Input" name="text" placeholder="Add a new todo" required>
-							<button type="submit" id="addTodoButton" class="Todo-Button">Add Todo</button>
-						</form>
-						<ul class="todo-list">
-							@foreach ($todos as $todo)
-								<li>
-									{{ $todo->text }}
-									<i class='bx bx-dots-vertical-rounded'></i>
-								</li>
-							@endforeach
-						</ul>
 					</div>
-					</div>
-			<!-- Add Todo Modal -->
-			<div class="modal" id="todoModal">
-				<div class="modal-content">
-					<span class="close-modal" id="closeModal">&times;</span>
-					<div id="modalText"></div>
-				</div>
-			</div>
-		
+					
 		</main>
 		<!-- MAIN -->
 	</section>
 	<!-- CONTENT -->
 	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script src="{{ url('/public/index.js') }}"></script>
+	<!-- Your HTML code remains unchanged -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const filterDropdown = document.getElementById('filterDropdown');
+    const searchInput = document.getElementById('searchInput');
+    const rows = document.querySelectorAll('tbody tr');
 
+    // Event listener for changes in dropdown or search input
+    function handleSearchAndFilter() {
+        const selectedOption = filterDropdown.value.toLowerCase();
+        const searchText = searchInput.value.toLowerCase();
 
+        // Example: Change H3 text based on the selected option
+        const h3Element = document.querySelector('.user-list h3');
+        h3Element.textContent = `List of ${selectedOption.charAt(0).toUpperCase() + selectedOption.slice(1)}`;
 
+        // Filter table rows based on search text and selected option
+        rows.forEach(row => {
+            const userText = row.querySelector('td p').textContent.toLowerCase();
+            const userType = row.getAttribute('data-type').toLowerCase();
 
+            // Check if the search text matches and the user type is the selected option
+            const showRow = (selectedOption === 'all' || ((selectedOption === 'employee' && (userPosition === 'head' || userPosition === 'maintenance personnel')) || userType === selectedOption)) && userText.includes(searchText);
+
+            row.style.display = showRow ? '' : 'none';
+        });
+    }
+
+    // Attach the event listener to the dropdown and search input
+    filterDropdown.addEventListener('change', handleSearchAndFilter);
+    searchInput.addEventListener('input', handleSearchAndFilter);
+
+    // Event listener for the search icon
+    const searchIcon = document.querySelector('.search-icon');
+    searchIcon.addEventListener('click', function () {
+        handleSearchAndFilter();
+    });
+});
+	
+</script>
 </body>
 </html>

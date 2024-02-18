@@ -29,7 +29,7 @@ class LoginController extends Controller
             // The user is logged in.
 
             // Check if the authenticated user is an admin using the AdminMiddleware logic.
-            if (Auth::user()->isAdmin()) {
+            if (Auth::user()->isAdmin()) { 
                 return redirect()->intended('/admin/dashboard');
             }
 

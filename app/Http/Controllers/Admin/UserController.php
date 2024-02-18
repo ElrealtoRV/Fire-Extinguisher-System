@@ -125,4 +125,25 @@ class UserController extends Controller
         return view('admin.partials.user_table')->with('users', $users);
     }
 
+
+        //admin Dashboard userslist
+        public function DashUserDisplay()
+    {
+        // Fetch all users from the user_lists table
+        $users = UserList::all();
+
+        // Pass the users data to the view
+        return view('admin.dashboard', ['users' => $users]);
+    }
+    public function DashfilterUsers(Request $request)
+    {
+        $selectedRole = $request->input('role');
+        
+        // Fetch users based on the selected role
+        $users = UserList::where('Position', $selectedRole)->get();
+
+        // Render the user table partial view with the filtered users
+        return view('admin.dashboard')->with('users', $users);
+    }
+
 }

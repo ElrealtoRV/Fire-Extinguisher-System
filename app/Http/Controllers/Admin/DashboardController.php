@@ -4,7 +4,8 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Todo;
+use App\Models\UserList;
+
 
 class DashboardController extends Controller
 {
@@ -13,14 +14,26 @@ class DashboardController extends Controller
      */
     public function DashDisplay()
     {
-        return view('admin/dashboard');
+        return view('admin.dashboard');
     }
+    
     public function showDashboard()
-    {
-        $todos = Todo::all();
-        return view('admin/dashboard', compact('todos'));
-    }
+{
+    $users = UserList::all();
+    $employees = UserList::all();
 
+    // Debugging: Dump and die to check the retrieved users
+    // dd($users);
+
+    // Merge $users and $employees into a single array
+    $data = [
+        'users' => $users,
+        'employees' => $employees,
+    ];
+
+    // Pass the data to the view
+    return view('admin.dashboard', $data);
+}
     
     /**
      * Store a newly created resource in storage.
