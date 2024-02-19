@@ -92,17 +92,8 @@
 								<td><span class="status {{ $user->status }}">{{ $user->status }}</span></td>
 							</tr>
 							@empty
-						@endforelse
-						@forelse($employees as $employee)
-							<tr data-type="employee">
-								<td>
-									<img src="img/people.png">
-									<p>{{ $employee->Fname }} {{ $user->Lname }}</p>
-								</td>
-								<td>{{ $employee->Position }}</td>
-								<td><span class="status {{ $employee->status }}">{{ $employee->status }}</span></td>
-							</tr>
-						@empty
+
+							
 							<tr>
 								<td colspan="3">No users found</td>
 							</tr>

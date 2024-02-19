@@ -28,7 +28,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="#">
+			<a href="{{ route('admin.map') }}">
 				<i class='bx bxs-map' ></i>
 					<span class="text">Map</span>
 				</a>

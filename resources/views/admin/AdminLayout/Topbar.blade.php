@@ -19,7 +19,6 @@
                 <img src="/img/fire.png">
             </a>
             <div class="dropdown-content" id="dropdown-content">
-                <a href="account">Account</a>
                 <a href="settingView">Settings</a>
                 <a href="{{ route('logout') }}">Logout</a>
             </div>

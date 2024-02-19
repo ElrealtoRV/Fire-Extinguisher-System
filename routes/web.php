@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\RequestController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\MapController;
 use App\Http\Controllers\TodoController;
 use App\Http\Controllers\SignupController;
 use App\Http\Controllers\ExtinguisherController;
@@ -68,6 +69,8 @@ Route::get('/admin/dashboard', [DashboardController::class, 'showDashboard']);
 //fire extinguisher.
 Route::get('/extinguisher', [ExtinguisherController::class, 'ExtDisplay'])->name('extinguisher');
 
+//ADmin Map Controller
+Route::get('/admin/map', [MapController::class, 'MapDisplay'])->name('admin.map');
 //Report Controller
 Route::get('/report', [ReportController::class, 'ReportDisplay'])->name('report');
 //Edit Account Controller

@@ -18,6 +18,8 @@ class LoginController extends Controller
         return view('Auth.admin.login', ['url' => 'Auth/admin/login']);
     }
     
+
+    
     public function adminLogin(Request $request)
     {
         $this->validate($request, [
