@@ -34,8 +34,7 @@ class User extends Authenticatable
     ];
     public function isAdmin()
     {
-        // You can define your logic here, for example, checking a specific role or attribute
-        return $this->role === 'admin';
+        return $this->role === 'admin'; // Assuming your role field contains the user role
     }
     /**
      * The attributes that should be cast.

@@ -1,0 +1,16 @@
+.status {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.active {
+    background-color: green; /* Adjust the color as needed */
+    color: #fff;
+}
+
+.inactive {
+    background-color: orange; /* Adjust the color as needed */
+    color: #fff;
+}

@@ -15,7 +15,7 @@
                 <h2>Admin Login</h2>
                 <div class="card">
                     
-                        <form method="POST" action="{{ route('Auth/admin/login') }}">
+                        <form method="POST" action="{{ asset('admin/login') }}">
                             @csrf
                             
                             <div class="card">
@@ -42,5 +42,6 @@
 
             </div>
         </div>
+        
         </body>
     </html>

@@ -1,5 +1,4 @@
-@include('admin.AdminLayout.Topbar')
-@include('admin.AdminLayout.Sidebar')
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,13 +8,19 @@
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/dashboard.css') }}">
+	
     <title>Admin | Dashboard</title>
 </head>
 <body>
+@include('Layout.Topbar')
+@include('Layout.Sidebar')
+
+
     <!-- MAIN -->
 		<main>
 			<div class="head-title">
-				<div class="left">
+				<div class="left">	
 					<h1>Dashboard</h1>
 					<ul class="breadcrumb">
 						<li>
@@ -42,10 +47,10 @@
 					</span>
 				</li>
 				<li>
-					<i class='fas fa-briefcase' ></i>
+					<i class='fas fa-briefcase'></i>
 					<span class="text">
-						<h3>2834</h3>
-						<p>Employee</p>
+						<h3>{{ $employeeCount }}</h3>
+						<p>Employee{{ $employeeCount != 1 ? 's' : '' }}</p>
 					</span>
 				</li>
 				<li>
@@ -69,7 +74,8 @@
 						<select id="filterDropdown" name="users_filter">
 							
 						<option value="user"><i class="fas fa-user"></i> Users</option>
-    					<option value="employee"><i class="fas fa-briefcase"></i> Employees</option>
+    					<option value="HEAD"><i class="fas fa-briefcase"></i> HEAD</option>
+    					<option value="MAINTENANCE PERSONNEL"><i class="fas fa-briefcase"></i> MAINTENANCE PERSONNEL</option>
 						</select>
 						</form>
 						</div>
@@ -89,11 +95,14 @@
 									<p>{{ $user->Fname }} {{ $user->Lname }}</p>
 								</td>
 								<td>{{ $user->Position }}</td>
-								<td><span class="status {{ $user->status }}">{{ $user->status }}</span></td>
+								<td>
+								
+									<span class="status {{ $user->status == 1 ? 'active' : 'inactive' }}">
+										{{ $user->status == 1 ? 'Active' : 'Inactive' }}
+									</span>
+								</td>
 							</tr>
-							@empty
-
-							
+						@empty
 							<tr>
 								<td colspan="3">No users found</td>
 							</tr>
@@ -105,6 +114,7 @@
 		</main>
 		<!-- MAIN -->
 	</section>
+
 	<!-- CONTENT -->
 	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 	<!-- Your HTML code remains unchanged -->
@@ -129,7 +139,7 @@
             const userType = row.getAttribute('data-type').toLowerCase();
 
             // Check if the search text matches and the user type is the selected option
-            const showRow = (selectedOption === 'all' || ((selectedOption === 'employee' && (userPosition === 'head' || userPosition === 'maintenance personnel')) || userType === selectedOption)) && userText.includes(searchText);
+            const showRow = (selectedOption === 'all' || ((selectedOption === 'employee' && (userPosition === 'HEAD' || userPosition === 'MAINTENANCE PERSONNEL')) || userType === selectedOption)) && userText.includes(searchText);
 
             row.style.display = showRow ? '' : 'none';
         });

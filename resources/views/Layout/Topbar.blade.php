@@ -10,12 +10,21 @@
 					<button type="submit" class="search-btn"><i class='bx bx-search' ></i></button>
 				</div>
 			</form>
-			<input type="checkbox" id="switch-mode" hidden>
-			<label for="switch-mode" class="switch-mode"></label>
 			<a href="#" class="notification">
 				<i class='bx bxs-bell' ></i>
 				<span class="num">8</span>
 			</a>
+			@if(Auth::user()->role === 'admin')
+			<div class="dropdown" id="dropdown">
+            <a href="#" class="profile">
+                <img src="img/fire.png">
+            </a>
+            <div class="dropdown-content" id="dropdown-content">
+                <a href="Setting.settingView">Settings</a>
+                <a href="{{ route('Admin/logout') }}">Logout</a>
+            </div>
+        </div>
+		@elseif(Auth::user()->role === 'head')
 			<div class="dropdown" id="dropdown">
             <a href="#" class="profile">
                 <img src="img/fire.png">
@@ -23,9 +32,10 @@
             <div class="dropdown-content" id="dropdown-content">
                 <a href="account">Account</a>
                 <a href="Setting.settingView">Settings</a>
-                <a href="{{ route('logout') }}">Logout</a>
+                <a href="{{ route('Head/logout') }}">Logout</a>
             </div>
         </div>
+		@endif
 		</nav>
-        <script src="index.js"></script>
+        <script src="{{ asset('/index.js') }}"></script>
 		<!-- NAVBAR -->

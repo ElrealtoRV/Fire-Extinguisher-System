@@ -12,29 +12,16 @@ class DashboardController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function DashDisplay()
-    {
-        return view('admin.dashboard');
-    }
     
-    public function showDashboard()
-{
-    $users = UserList::all();
-    $employees = UserList::all();
-
-    // Debugging: Dump and die to check the retrieved users
-    // dd($users);
-
-    // Merge $users and $employees into a single array
-    $data = [
-        'users' => $users,
-        'employees' => $employees,
-    ];
-
-    // Pass the data to the view
-    return view('admin.dashboard', $data);
-}
+     public function showDashboard()
+     {
+ 
+            $users = UserList::all();
+            $employeeCount = UserList::count();
     
+            return view('admin.dashboard', compact('users', 'employeeCount'));
+     }
+     
     /**
      * Store a newly created resource in storage.
      */

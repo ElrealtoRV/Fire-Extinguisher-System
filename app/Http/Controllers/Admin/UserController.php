@@ -4,8 +4,10 @@ namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use App\Models\AdminUser;
 use App\Models\UserList;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -30,6 +32,7 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+
     public function store(Request $request)
     {
         $request->validate([
@@ -43,11 +46,11 @@ class UserController extends Controller
             'Position' => 'required|string',
             'Dept' => 'required|string',
             'Password' =>'required|string|min:6',
-            // Add other validation rules for your form fields
         ]);
-        $hashedPassword = bcrypt($request->input('Password'));
-        // Create a new user
-        UserList    ::create([
+    
+        $hashedPassword = Hash::make($request->input('Password'));
+    
+        $user = UserList::create([
             'Fname' => $request->input('Fname'),
             'Mname' => $request->input('Mname'),
             'Lname' => $request->input('Lname'),
@@ -59,12 +62,11 @@ class UserController extends Controller
             'Dept' => $request->input('Dept'),
             'Password' => $hashedPassword,
         ]);
+        Auth::login($user);
     
-        // Redirect to the user list or other page
         return redirect()->route('admin/user')->with('success', 'Employee added successfully');
-    
     }
-
+    
     /**
      * Display the specified resource.
      */

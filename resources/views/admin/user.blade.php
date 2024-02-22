@@ -11,8 +11,8 @@
     
 </head>
 <body>
-@include('admin.AdminLayout.Topbar')
-@include('admin.AdminLayout.Sidebar')
+@include('Layout.Topbar')
+@include('Layout.Sidebar')
 <div class="centered-box">
 <div class="flex-container">
     <div>
