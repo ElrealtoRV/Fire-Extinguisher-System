@@ -18,6 +18,7 @@ class AdminSeeder extends Seeder
         AdminUser::create([
             'username' => 'admin',
             'password' => Hash::make('admin123'),
+            'role' => 'admin',
             // Add any other fields or attributes as needed
         ]);
     }

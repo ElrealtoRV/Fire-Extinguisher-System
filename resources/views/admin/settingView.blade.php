@@ -13,8 +13,8 @@
 </head>
 
 <body>
-@include('Layout.Topbar')
-@include('Layout.Sidebar')
+@include('admin.AdminLayout.Topbar')
+@include('admin.AdminLayout.Sidebar')
             
            </main>
            <main class="group1">

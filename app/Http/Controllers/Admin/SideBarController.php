@@ -1,21 +1,23 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 
-class TopBarController extends Controller
+
+class SideBarController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      */
-    public function TopDisplay()
+    public function SideDisplay()
     {
-        return view('topbar');
+        return view("admin.sidebar");
     }
+
     /**
      * Store a newly created resource in storage.
      */
@@ -27,20 +29,18 @@ class TopBarController extends Controller
     /**
      * Display the specified resource.
      */
-    public function showUsername(string $id)
+    public function show(string $id)
     {
-        $username = Auth::user()->username;
-
-        // Pass the username to the view
-        return view('Layout.Topbar', ['username' => $username]);
+        //
     }
+
     /**
-     * Update the speci.fied resource in storage.
+     * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
     {
         //
-    }   
+    }
 
     /**
      * Remove the specified resource from storage.

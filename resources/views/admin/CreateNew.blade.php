@@ -1,6 +1,6 @@
 
-@include('Layout.Topbar')
-@include('Layout.Sidebar')
+@include('admin.AdminLayout.Topbar')
+@include('admin.AdminLayout.Sidebar')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -53,6 +53,7 @@
             <select id="role" class="Pos1" name="Position">
                 <option value="" class="SP"disabled selected required>Select Position</option>
                 <option id="Employee"value="HEAD">HEAD</option>
+                <option id="users"value="Users">USER</option>
                 <option id="employee"value="MAINTENANCE PERSONNEL">MAINTENANCE PERSONNEL</option>
             </select>
 

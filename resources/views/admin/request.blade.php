@@ -10,8 +10,8 @@
     
 </head>
 <body>
-@include('Layout.Topbar')
-@include('Layout.Sidebar')
+@include('admin.AdminLayout.Topbar')
+@include('admin.AdminLayout.Sidebar')
 <div class="centered-box">
 <div class="flex-container">
     <div>

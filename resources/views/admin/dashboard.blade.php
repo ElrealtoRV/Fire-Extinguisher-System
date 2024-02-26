@@ -13,8 +13,8 @@
     <title>Admin | Dashboard</title>
 </head>
 <body>
-@include('Layout.Topbar')
-@include('Layout.Sidebar')
+@include('admin.AdminLayout.Topbar')
+@include('admin.AdminLayout.Sidebar')
 
 
     <!-- MAIN -->
@@ -39,14 +39,21 @@
 						<p>Fire Extinguisher</p>
 					</span>
 				</li>
-				<li>
-					<i class='bx bxs-group' ></i>
+					<li>
+						@php
+							$usersCount = \App\Models\UserList::count();
+						@endphp
+						<i class='bx bxs-group'></i>
 					<span class="text">
-						<h3>2834</h3>
-						<p>Users</p>
+						<h3>{{ $usersCount }}</h3>
+						<p>User{{ $usersCount != 1 ? 's' : '' }}</p>
 					</span>
-				</li>
+					</li>
 				<li>
+					@php
+						$employeeCount = \App\Models\UserList::count();
+					@endphp
+
 					<i class='fas fa-briefcase'></i>
 					<span class="text">
 						<h3>{{ $employeeCount }}</h3>
@@ -88,6 +95,9 @@
 							</tr>
 						</thead>
 						<tbody>
+						@php
+						$users = \App\Models\UserList::all();
+						@endphp
 						@forelse($users as $user)
 							<tr data-type="user">
 								<td>

@@ -1,5 +1,4 @@
 <!-- CONTENT -->
-
 <section id="content">
 		<!-- NAVBAR -->
 		<nav>
@@ -15,14 +14,17 @@
 				<span class="num">8</span>
 			</a>
 			<div class="dropdown" id="dropdown">
-            <a href="#" class="profile">
-                <img src="/img/fire.png">
-            </a>
-            <div class="dropdown-content" id="dropdown-content">
-                <a href="settingView">Settings</a>
-                <a href="{{ route('logout') }}">Logout</a>
-            </div>
-        </div>
+				<a href="#" class="profile">
+					@if(auth('admin')->check())
+						<div class="Tname" style="color: black !important;">{{ auth('admin')->user()->name }}</div>
+					@endif
+				</a>
+				<div class="dropdown-content" id="dropdown-content">
+					<a href="settingView">Settings</a>
+					<a href="{{ route('admin/logout') }}">Logout</a>
+				</div>
+			</div>
+
 		</nav>
         <script src="/index.js"></script>
 		<!-- NAVBAR -->

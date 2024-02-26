@@ -14,7 +14,7 @@
 				<i class='bx bxs-bell' ></i>
 				<span class="num">8</span>
 			</a>
-			@if(Auth::user()->role === 'admin')
+		
 			<div class="dropdown" id="dropdown">
             <a href="#" class="profile">
                 <img src="img/fire.png">
@@ -24,7 +24,7 @@
                 <a href="{{ route('Admin/logout') }}">Logout</a>
             </div>
         </div>
-		@elseif(Auth::user()->role === 'head')
+		
 			<div class="dropdown" id="dropdown">
             <a href="#" class="profile">
                 <img src="img/fire.png">
@@ -32,10 +32,10 @@
             <div class="dropdown-content" id="dropdown-content">
                 <a href="account">Account</a>
                 <a href="Setting.settingView">Settings</a>
-                <a href="{{ route('Head/logout') }}">Logout</a>
+                <a href="#Logout</a>
             </div>
         </div>
-		@endif
+		
 		</nav>
         <script src="{{ asset('/index.js') }}"></script>
 		<!-- NAVBAR -->

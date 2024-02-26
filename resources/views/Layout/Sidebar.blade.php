@@ -14,7 +14,7 @@
             <span class="text1">Fire<i class="fas fa-fire-extinguisher"></i> Extinguisher <p style="font-size:10px"> Mapping & Monitoring System</p></span>
         </a>
         <ul class="side-menu top">
-            @if(Auth::user()->role === 'admin')
+          
                 <li class="{{ request()->is('dashboard') ? 'active' : '' }}">
                     <a href="{{ url('admin/dashboard') }}">
                         <i class='bx bxs-dashboard'></i>
@@ -47,7 +47,7 @@
                 </li>
 
             </li>
-            @elseif(Auth::user()->role === 'head')
+        
                 <li class="{{ request()->is('Headdashboard') ? 'active' : '' }}">
                     <a href="{{ url('Head/dashboard') }}">
                         <i class='bx bxs-dashboard'></i>
@@ -92,12 +92,12 @@
                 </li>
                 
             <li>
-                <a href="{{ url('Head/logout') }}" class="logout">
+                <a href="#" class="logout">
                     <i class='bx bxs-log-out-circle'></i>
                     <span class="text">Logout</span>
                 </a>
             </li>
-            @endif
+       
         </ul>
     </section>
     <!-- SIDEBAR -->

@@ -24,26 +24,27 @@ class LoginController extends Controller
     
     public function adminLogin(Request $request)
     {
-        $roles = ['admin', 'user'];
         $this->validate($request, [
             'username' => 'required|string',
             'password' => 'required|string',
         ]);
-        if (Auth::guard('web')->attempt(['username' => $request->username, 'password' => $request->password], $request->remember)) {
+    
+        if (Auth::guard('admin')->attempt(['username' => $request->username, 'password' => $request->password], $request->remember)) {
             // The user is logged in.
-        
-            // Check if the authenticated user is an admin using the AdminMiddleware logic.
-            if (auth()->user() && auth()->user()->isAdmin()) {
+            
+            // Check if the authenticated user is an admin using the isAdmin method.
+            if (auth()->guard('admin')->user()->isAdmin()) {
                 return redirect()->intended('/admin/dashboard')->with('success', 'Login successful');
             } else {
                 // If not an admin, logout the user and redirect with an error message.
-                Auth::logout();
-                return redirect('/login')->with('error', 'You do not have the required permissions to access this page.');
+                Auth::guard('admin')->logout();
+                return redirect('/admin/login')->with('error', 'You do not have the required permissions to access this page.');
             }
         }
-        
+    
         return redirect()->route('Auth/admin/login')->with('error', 'Wrong Username and Password');
     }
+
  
     /**
      * Store a newly created resource in storage.

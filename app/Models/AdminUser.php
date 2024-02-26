@@ -13,7 +13,7 @@ class AdminUser extends Authenticatable
     use Notifiable;
 
     protected $fillable = [
-       'username','password',
+       'username','password','role',
     ];
 
     protected $hidden = [

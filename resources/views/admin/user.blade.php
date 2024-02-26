@@ -11,16 +11,16 @@
     
 </head>
 <body>
-@include('Layout.Topbar')
-@include('Layout.Sidebar')
+@include('admin.AdminLayout.Topbar')
+@include('admin.AdminLayout.Sidebar')
 <div class="centered-box">
 <div class="flex-container">
     <div>
         <select id="role" class="choices" onchange="change()">
         <option selected disabled hidden>Select Role</option>
-        <option value="Head">Office Head</option>
-        <option value="Maintenance Personnel">Maintenance Personnel</option>
-        <option value="Users">Users</option>
+        <option id="employee"value="Head">Office Head</option>
+        <option id="employee"value="Maintenance Personnel">Maintenance Personnel</option>
+        <option id="users"value="Users">USERS</option>
         </select>
 
         <select id="status" class="choices">

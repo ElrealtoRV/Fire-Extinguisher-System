@@ -18,8 +18,10 @@ class DashboardController extends Controller
  
             $users = UserList::all();
             $employeeCount = UserList::count();
+            
+         
     
-            return view('admin.dashboard', compact('users', 'employeeCount'));
+            return view('admin.dashboard')->with('users', $users)->with('employeeCount', $employeeCount);
      }
      
     /**
